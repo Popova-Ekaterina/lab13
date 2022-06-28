@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Название модели</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/model.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav >
+        <div class="container-fluid"  style="background-color: #00a8e1">
+            <span class="navbar-brand mb-0 h1" >Попова Екатерина 13 Лаб. Работа</span>
+        </div>
+    </nav>
+    <div class="myclass" >
+        <div class="model">
+
+            <div class="threejs">
+            </div>
+
+            <div class="about-model">
+                <form>
+                    <label><input type="radio" value="gray" name="color" checked>Серый</label>
+                    <label><input type="radio" value="red" name="color">Красный</label>
+                    <label><input type="radio" value="green" name="color">Зеленый</label>
+                    <label><input type="radio" value="blue" name="color">Синий</label>
+                    
+                </form>
+                <h1>Название модели<a href="#">&#9733</a> </h1>
+                <h2>Автор</h2>
+                <p>
+                    Описание модели 
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="sugg">
+            <h2>
+                Другие модели
+            </h2>
+
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/1.jpg"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Модель №1</h5>
+                            <p class="card-text">Описание модели</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/1.jpg"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Модель №2</h5>
+                            <p class="card-text">Описание модели</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/1.jpg"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Модель №3</h5>
+                            <p class="card-text">Описание модели</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/1.jpg"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Модель №4</h5>
+                            <p class="card-text">Описание модели</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/1.jpg"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Модель №5</h5>
+                            <p class="card-text">Описание модели</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center text-white" style="background-color: #00a8e1">
+
+
+        <div class="text-center p-3">
+            © 2022 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Попова Екатерина, группа 201-323, 13 лаб.</a>
+        </div>
+    </footer>
+    <script src="three.js"></script>
+    <script src="STLloader.js"></script>
+    <script>
+
+        const div = document.querySelector('.threejs'); //видимость
+        let mesh;
+
+        document.forms[0].addEventListener('change', (e) =>  {
+            mesh.material.color.set(e.target.value); //меняем цвет с помощью кнопок, выставляет материал типа цвет из формы
+        })
+
+        window.addEventListener('resize', onWindowResize);
+
+        function onWindowResize() { // размер окна
+
+            camera.aspect = div.clientWidth / div.clientHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(div.clientWidth, div.clientHeight);
+
+        }
+        
+        const clock = new THREE.Clock(); //кручение камеры
+
+        const scene = new THREE.Scene(); // gray scene
+        const camera = new THREE.PerspectiveCamera(50, div.clientWidth / div.clientHeight, 0.1, 100);
+        // ставим камеру, 50 градусов за  0.1 секунды, крутится 100 раз
+        camera.position.set(3, 0.7, 3); //позиция камеры
+        cameraTarget = new THREE.Vector3(0, 0.4, 0); // направление
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(div.clientWidth, div.clientHeight);
+
+        div.appendChild(renderer.domElement);
+        renderer.shadowMap.enabled = true; //фон
+
+        scene.background = new THREE.Color('gray'); // color
+        scene.fog = new THREE.Fog('gray', 1, 5);
+
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444); // тип света
+        hemiLight.position.set(0, 200, 0); // позиция 
+        scene.add(hemiLight); // вкл
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff); // свет для тени
+        directionalLight.position.set(25, 25, 25);
+        directionalLight.castShadow = true;
+
+        directionalLight.shadow.mapSize.width = 2000; // default
+        directionalLight.shadow.mapSize.height = 2000; // default
+        directionalLight.shadow.camera.top = 10;
+        directionalLight.shadow.camera.bottom = - 10;
+        directionalLight.shadow.camera.left = - 10;
+        directionalLight.shadow.camera.right = 10;
+        scene.add(directionalLight);
+        //сетка для модели
+        const plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(4000, 4000),
+            new THREE.MeshPhongMaterial({ color: 0x808080, dithering: true })
+        );
+        plane.rotation.x = - Math.PI / 2;
+        plane.receiveShadow = true;
+        scene.add(plane);
+
+        const loader = new STLLoader();
+        loader.load('/models/zdun.STL', function (geometry) {
+
+            const material = new THREE.MeshPhongMaterial({ color: 0xAAAAAA, specular: 0x111111, shininess: 200 });
+            mesh = new THREE.Mesh(geometry, material);
+
+            let box = new THREE.Box3();
+            let size = new THREE.Vector3();
+
+            box.setFromObject(mesh).getSize(size);
+            mesh.scale.set(1 / size.y, 1 / size.y, 1 / size.y);
+
+            let center = new THREE.Vector3()
+            box.setFromObject(mesh).getCenter(center);
+
+            mesh.position.set(-center.x, 0, -center.z);
+
+            mesh.castShadow = true;
+
+            scene.add(mesh);
+
+        });
+
+
+        camera.position.z = 5; // положение камеры
+
+        function animate() { // анимация прокрутки
+
+            requestAnimationFrame(animate);
+
+            render();
+
+        }
+
+        function render() { // настройка кручения
+
+            const elapsedTime = clock.getElapsedTime()
+
+            camera.position.x = Math.cos(elapsedTime * 0.5) * 2; // по кругу с частотой (указанной)
+            camera.position.z = Math.sin(elapsedTime * 0.5) * 2;
+
+            camera.lookAt(cameraTarget); // цель камеры, объект
+
+            renderer.render(scene, camera);
+
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>
