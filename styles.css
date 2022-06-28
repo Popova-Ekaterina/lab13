@@ -1,0 +1,64 @@
+.myclass {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 5% 0 5%;
+    height: 100%;
+}
+
+.threejs {
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 600px;
+
+}
+
+.model {
+    padding: 15px;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sugg {
+    width: 35%;
+    padding: 15px;
+}
+
+body {
+    margin: 0;
+}
+
+
+.img-fluid .rounded-start img {
+
+    width: 50px;
+    height: 50px;
+
+}
+
+form label {
+    margin-right: 15px;
+}
+
+form label input {
+    margin-right: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    color: rgb(255, 176, 176);
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(238, 132, 130);
+}
+
+img {
+    border: 10px solid #00a8e1;
+   }
